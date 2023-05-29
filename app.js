@@ -22,7 +22,7 @@ let fetchJson = async function (url) {
     }
 }
 
-function test() {
+function printMovie() {
     fetchJson(url).then((data) => {
         let rows = data.results;
         rows.forEach((a) => {
@@ -38,7 +38,6 @@ function test() {
         })
     });
 }
-test();
 
 function newCard(idNumber, title, image, overView, rating, area) {
     let div = document.createElement("div");
@@ -62,3 +61,5 @@ function newCard(idNumber, title, image, overView, rating, area) {
         });
     });
 }
+
+printMovie();
