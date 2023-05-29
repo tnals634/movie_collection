@@ -1,0 +1,60 @@
+.webTitle {
+    width: 100%;
+    height: 150px;
+
+    /* background-image: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://img.hankyung.com/photo/202209/01.31260167.1.jpg");
+        background-position: center 30%;
+        background-size: cover; */
+    background-color: black;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mycards {
+    margin: 20px auto 0px auto;
+    width: 1200px;
+    /* max-width: 13200px; */
+}
+
+.serch {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-sm-7 {
+    margin-right: 2%;
+}
+
+.movieCard {
+    width: 300px;
+    height: 850px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: gray;
+    padding: 1% 1% 1% 1%;
+    color: white;
+    border-radius: 20px;
+}
+
+.card-img-top{
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.movieCard > h5 {
+    font-weight: bolder;
+}
