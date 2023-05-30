@@ -62,7 +62,13 @@ function findCard(movietitle) {
     fetchJson(url).then((data) => {
         let rows = data.results;
         let resultMovie;
-        resultMovie = rows.find((value) => value.title === movietitle);
+        resultMovie = rows.find((value) =>{
+            let str1 = (value.title).toUpperCase();
+            let str2 = movietitle.toUpperCase();
+            if(str1 === str2){
+                return value.title;
+            }
+        });
         if(resultMovie){
             let id = resultMovie['id'];
             let title = resultMovie['title'];
@@ -80,6 +86,12 @@ function findCard(movietitle) {
 $serchBtn.onclick = function () {
     checkCard($movieTitle.value);
 };
+//엔터키 입력시 검색
+function fnEnterkey(){
+    if(window.event.keyCode == 13){
+        checkCard($movieTitle.value);
+    }
+}
 //모든 카드 출력
 function allCard(){
     fetchJson(url).then((data) => {
