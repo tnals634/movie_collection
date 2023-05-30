@@ -61,24 +61,23 @@ let clearCard = function (){
 function findCard(movietitle) {
     fetchJson(url).then((data) => {
         let rows = data.results;
-        console.log("rows : ", rows);
         let resultMovie;
         resultMovie = rows.find((value) => value.title === movietitle);
-        console.log(resultMovie);
-        let id = resultMovie['id'];
-        let title = resultMovie['title'];
-        let image = `https://www.themoviedb.org/t/p/w500/${resultMovie['poster_path']}`;
-        let overView = resultMovie['overview'];
-        let rating = resultMovie['vote_average'];
-        
-        newCard(id, title, image, overView, rating, $mycards).then((div) => {
-            console.log(div);
-        });
+        if(resultMovie){
+            let id = resultMovie['id'];
+            let title = resultMovie['title'];
+            let image = `https://www.themoviedb.org/t/p/w500/${resultMovie['poster_path']}`;
+            let overView = resultMovie['overview'];
+            let rating = resultMovie['vote_average'];
+            
+            newCard(id, title, image, overView, rating, $mycards).then((div) => {
+                console.log(div);
+            });
+        }
     })
 }
 //검색 버튼 클릭
 $serchBtn.onclick = function () {
-    console.log($movieTitle.value);
     checkCard($movieTitle.value);
 };
 //모든 카드 출력
@@ -104,10 +103,8 @@ function checkCard(movietitle) {
     clearCard();
     if(!movietitle){
         printMovie = allCard();
-        console.log("모든 영화 출력");
     }else {
         printMovie = findCard(movietitle);
-        console.log("check");
     }
 }
 
