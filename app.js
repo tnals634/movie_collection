@@ -62,24 +62,25 @@ function findCard(movietitle) {
     fetchJson(url).then((data) => {
         let rows = data.results;
         let resultMovie;
-        resultMovie = rows.find((value) =>{
-            let str1 = (value.title).toUpperCase();
-            let str2 = movietitle.toUpperCase();
-            if(str1 === str2){
-                return value.title;
+        let str1;
+        let str2 = movietitle.toUpperCase();
+        let count;
+        rows.forEach((a) => {
+            let t = a['title'];
+            str1 = t.toUpperCase();
+            count = str1.search(str2);
+            console.log("count check : ",count);
+            if(0 <= count){
+                console.log(resultMovie);
+                let id = a['id'];
+                let title = a['title'];
+                let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
+                let overView = a['overview'];
+                let rating = a['vote_average'];
+                
+                newCard(id, title, image, overView, rating, $mycards);
             }
-        });
-        if(resultMovie){
-            let id = resultMovie['id'];
-            let title = resultMovie['title'];
-            let image = `https://www.themoviedb.org/t/p/w500/${resultMovie['poster_path']}`;
-            let overView = resultMovie['overview'];
-            let rating = resultMovie['vote_average'];
-            
-            newCard(id, title, image, overView, rating, $mycards).then((div) => {
-                console.log(div);
-            });
-        }
+        })
     })
 }
 //검색 버튼 클릭
@@ -104,9 +105,7 @@ function allCard(){
             let overView = a['overview'];
             let rating = a['vote_average'];
 
-            newCard(id, title, image, overView, rating, $mycards).then((div) => {
-                console.log(div);
-            });
+            newCard(id, title, image, overView, rating, $mycards);
         })
     });
 }
