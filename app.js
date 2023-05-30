@@ -3,6 +3,7 @@ const $movieCard = document.querySelector(".movieCard");
 const $serchBtn = document.querySelector("#myBtn");
 const $movieTitle = document.querySelector("#myText");
 
+// -- TMDB API 사용
 const options = {
     method: 'GET',
     headers: {
@@ -22,6 +23,8 @@ let fetchJson = async function (url) {
         console.error(err);
     }
 }
+// -- 여기까지 
+
 //화면 출력
 let printMovie = function () {
     allCard();
@@ -34,8 +37,8 @@ function newCard(idNumber, title, image, overView, rating, area) {
     div.id = `${idNumber}`;
     div.className = "movieCard";
 
-    div.innerHTML = `<img src="${image}" alt="${title}" class="card-img-top">
-                    <h5>${title}</h5>
+    div.innerHTML = `<img src="${image}" alt="${title}">
+                    <h3>${title}</h3>
                     <p> ${overView} </p>
                     <p> rating : ${rating} </p>`;
 
@@ -54,7 +57,7 @@ let clearCard = function (){
         parent.removeChild(parent.firstChild);
     }
 }
-//카드 찾기
+//검색한 영화제목 카드 찾기
 function findCard(movietitle) {
     fetchJson(url).then((data) => {
         let rows = data.results;
@@ -96,7 +99,7 @@ function allCard(){
         })
     });
 }
-//카드 체크
+//검색한 영화제목 체크
 function checkCard(movietitle) {
     clearCard();
     if(!movietitle){
