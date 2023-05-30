@@ -22,7 +22,6 @@ let fetchJson = async function (url) {
         console.error(err);
     }
 }
-
 //화면 출력
 let printMovie = function () {
     allCard();
