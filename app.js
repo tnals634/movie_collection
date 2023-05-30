@@ -22,7 +22,8 @@ let fetchJson = async function (url) {
         console.error(err);
     }
 }
-//url패치한거 가져와서 그리는 함수에 넣어주기
+
+//화면 출력
 let printMovie = function () {
     allCard();
 }
