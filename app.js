@@ -65,27 +65,31 @@ function findCard(movietitle) {
     //이게 맞는지는 모르겠으나 일단 구현했습니다.
     //영화 페이지가 최대 500페이지라서 500까지 돌렸습니다.
     //for문을 돌려서 각 페이지마다 검색
-    for(let pageNumber = 1; pageNumber <= 500; pageNumber++){
-        fetchJson(url , pageNumber).then((data) => {
+    //아직 이 for문을 대체할 filter를 구현하지 못함
+    for(let i = 1; i <= 500; i++){
+        fetchJson(url , i).then((data) => {
             let rows = data.results;
-            let rowsTitle;
-            let inputMovieTtle = movietitle.toUpperCase();
-            let count;
-            rows.forEach((a) => {
-                let aMovieTitle = a['original_title'];
-                rowsTitle = aMovieTitle.toUpperCase();
-                count = -1;
-                count = rowsTitle.search(inputMovieTtle);
-                if(0 <= count){
-                    let id = a['id'];
-                    let title = a['original_title'];
-                    let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
-                    let overView = a['overview'];
-                    let rating = a['vote_average'];
-                    
-                    newCard(id, title, image, overView, rating, $mycards);
+            let str2 = movietitle.toUpperCase();
+            //filter로 변경
+            let str1 = rows.filter((value) => {
+                let a = value['original_title'].toUpperCase();
+                let count = a.search(str2);
+                if(-1 < count){
+                    return value;
                 }
             })
+            str1.forEach((a) => {
+                console.log(i, str1);
+                let id = a['id'];
+                let title = a['original_title'];
+                let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
+                let overView = a['overview'];
+                let rating = a['vote_average'];
+                
+                newCard(id, title, image, overView, rating, $mycards);
+                    
+            })
+            
         })
     }
 }
