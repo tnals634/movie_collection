@@ -63,7 +63,7 @@ function findCard(movietitle) {
         let rows = data.results;
         let resultMovie;
         let str1;
-        let str2 = movietitle.toUpperCase();
+        let str2 = movietitle.toUpperCase(); // 대소문자 구분없이 검색하기 위해 uppercase사용
         let count;
         rows.forEach((a) => {
             let t = a['title'];
@@ -88,11 +88,11 @@ $serchBtn.onclick = function () {
     checkCard($movieTitle.value);
 };
 //엔터키 입력시 검색
-function fnEnterkey(){
-    if(window.event.keyCode == 13){
+document.addEventListener("keyup", function(event) {
+    if (event.key === 'Enter') {
         checkCard($movieTitle.value);
     }
-}
+});
 //모든 카드 출력
 function allCard(){
     fetchJson(url).then((data) => {
