@@ -66,20 +66,19 @@ function findCard(movietitle) {
     //영화 페이지가 최대 500페이지라서 500까지 돌렸습니다.
     //for문을 돌려서 각 페이지마다 검색
     //아직 이 for문을 대체할 filter를 구현하지 못함
-    for(let i = 1; i <= 500; i++){
-        fetchJson(url , i).then((data) => {
+    for(let pageNumber = 1; pageNumber <= 500; pageNumber++){
+        fetchJson(url , pageNumber).then((data) => {
             let rows = data.results;
-            let str2 = movietitle.toUpperCase();
+            let inputTitle = movietitle.toUpperCase();
             //filter로 변경
-            let str1 = rows.filter((value) => {
+            let rowsTitle = rows.filter((value) => {
                 let a = value['original_title'].toUpperCase();
-                let count = a.search(str2);
+                let count = a.search(inputTitle);
                 if(-1 < count){
                     return value;
                 }
             })
-            str1.forEach((a) => {
-                console.log(i, str1);
+            rowsTitle.forEach((a) => {
                 let id = a['id'];
                 let title = a['original_title'];
                 let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
