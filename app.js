@@ -65,7 +65,6 @@ function findCard(movietitle) {
     //이게 맞는지는 모르겠으나 일단 구현했습니다.
     //영화 페이지가 최대 500페이지라서 500까지 돌렸습니다.
     //for문을 돌려서 각 페이지마다 검색
-    //아직 이 for문을 대체할 filter를 구현하지 못함
     for(let pageNumber = 1; pageNumber <= 500; pageNumber++){
         fetchJson(url , pageNumber).then((data) => {
             let rows = data.results;
