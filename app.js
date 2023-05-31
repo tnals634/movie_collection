@@ -68,18 +68,17 @@ function findCard(movietitle) {
     for(let pageNumber = 1; pageNumber <= 500; pageNumber++){
         fetchJson(url , pageNumber).then((data) => {
             let rows = data.results;
-            let resultMovie;
             let rowsTitle;
             let inputMovieTtle = movietitle.toUpperCase();
             let count;
             rows.forEach((a) => {
                 let aMovieTitle = a['original_title'];
                 rowsTitle = aMovieTitle.toUpperCase();
+                count = -1;
                 count = rowsTitle.search(inputMovieTtle);
                 if(0 <= count){
-                    console.log(resultMovie);
                     let id = a['id'];
-                    let title = a['title'];
+                    let title = a['original_title'];
                     let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
                     let overView = a['overview'];
                     let rating = a['vote_average'];
@@ -108,7 +107,7 @@ function allCard(){
 
         rows.forEach((a) => {
             let id = a['id'];
-            let title = a['title'];
+            let title = a['original_title'];
             let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
             let overView = a['overview'];
             let rating = a['vote_average'];
