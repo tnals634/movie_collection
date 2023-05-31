@@ -57,31 +57,60 @@ let clearCard = function (){
         parent.removeChild(parent.firstChild);
     }
 }
+// //검색한 영화제목 카드 찾기
+// function findCard(movietitle) {
+//     fetchJson(url2).then((data) => {
+//         let rows = data.results;
+//         let resultMovie;
+//         let str1;
+//         let str2 = movietitle.toUpperCase();
+//         let count;
+//         rows.forEach((a) => {
+//             let t = a['title'];
+//             str1 = t.toUpperCase();
+//             count = str1.search(str2);
+//             console.log("count check : ",count);
+//             if(0 <= count){
+//                 console.log(resultMovie);
+//                 let id = a['id'];
+//                 let title = a['title'];
+//                 let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
+//                 let overView = a['overview'];
+//                 let rating = a['vote_average'];
+                
+//                 newCard(id, title, image, overView, rating, $mycards);
+//             }
+//         })
+//     })
+// }
+
 //검색한 영화제목 카드 찾기
 function findCard(movietitle) {
-    fetchJson(url).then((data) => {
-        let rows = data.results;
-        let resultMovie;
-        let str1;
-        let str2 = movietitle.toUpperCase(); // 대소문자 구분없이 검색하기 위해 uppercase사용
-        let count;
-        rows.forEach((a) => {
-            let t = a['title'];
-            str1 = t.toUpperCase();
-            count = str1.search(str2);
-            console.log("count check : ",count);
-            if(0 <= count){
-                console.log(resultMovie);
-                let id = a['id'];
-                let title = a['title'];
-                let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
-                let overView = a['overview'];
-                let rating = a['vote_average'];
-                
-                newCard(id, title, image, overView, rating, $mycards);
-            }
+    //for문을 돌려서 각 페이지마다 검색
+    for(let i = 1; i <= 500; i++){
+        fetchJson2(url2 , i).then((data) => {
+            let rows = data.results;
+            let resultMovie;
+            let str1;
+            let str2 = movietitle.toUpperCase();
+            let count;
+            rows.forEach((a) => {
+                let t = a['original_title'];
+                str1 = t.toUpperCase();
+                count = str1.search(str2);
+                if(0 <= count){
+                    console.log(resultMovie);
+                    let id = a['id'];
+                    let title = a['title'];
+                    let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
+                    let overView = a['overview'];
+                    let rating = a['vote_average'];
+                    
+                    newCard(id, title, image, overView, rating, $mycards);
+                }
+            })
         })
-    })
+    }
 }
 //검색 버튼 클릭
 $serchBtn.onclick = function () {
