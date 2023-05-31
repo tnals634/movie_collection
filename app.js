@@ -13,10 +13,21 @@ const options = {
 };
 
 let url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
+let url2 = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=';
 //url 패치
 let fetchJson = async function (url) {
     try {
         let response = await fetch(url, options);
+        let data = await response.json();
+        return data;
+    } catch (err) {
+        console.error(err);
+    }
+}
+//전체에서 영화 찾는 url 패치
+let fetchJson2 = async function (url , num) {
+    try {
+        let response = await fetch(url+`${num}`, options);
         let data = await response.json();
         return data;
     } catch (err) {
