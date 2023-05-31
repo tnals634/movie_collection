@@ -12,20 +12,9 @@ const options = {
     }
 };
 
-let url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-let url2 = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=';
+let url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=';
 //url 패치
-let fetchJson = async function (url) {
-    try {
-        let response = await fetch(url, options);
-        let data = await response.json();
-        return data;
-    } catch (err) {
-        console.error(err);
-    }
-}
-//전체에서 영화 찾는 url 패치
-let fetchJson2 = async function (url , num) {
+let fetchJson = async function (url , num) {
     try {
         let response = await fetch(url+`${num}`, options);
         let data = await response.json();
@@ -68,38 +57,11 @@ let clearCard = function (){
         parent.removeChild(parent.firstChild);
     }
 }
-// //검색한 영화제목 카드 찾기
-// function findCard(movietitle) {
-//     fetchJson(url2).then((data) => {
-//         let rows = data.results;
-//         let resultMovie;
-//         let str1;
-//         let str2 = movietitle.toUpperCase();
-//         let count;
-//         rows.forEach((a) => {
-//             let t = a['title'];
-//             str1 = t.toUpperCase();
-//             count = str1.search(str2);
-//             console.log("count check : ",count);
-//             if(0 <= count){
-//                 console.log(resultMovie);
-//                 let id = a['id'];
-//                 let title = a['title'];
-//                 let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
-//                 let overView = a['overview'];
-//                 let rating = a['vote_average'];
-                
-//                 newCard(id, title, image, overView, rating, $mycards);
-//             }
-//         })
-//     })
-// }
-
 //검색한 영화제목 카드 찾기
 function findCard(movietitle) {
     //for문을 돌려서 각 페이지마다 검색
     for(let i = 1; i <= 500; i++){
-        fetchJson2(url2 , i).then((data) => {
+        fetchJson(url , i).then((data) => {
             let rows = data.results;
             let resultMovie;
             let str1;
@@ -135,7 +97,7 @@ document.addEventListener("keyup", function(event) {
 });
 //모든 카드 출력
 function allCard(){
-    fetchJson(url).then((data) => {
+    fetchJson(url , 1).then((data) => {
         let rows = data.results;
 
         rows.forEach((a) => {
