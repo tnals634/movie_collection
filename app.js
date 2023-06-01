@@ -71,7 +71,7 @@ function findCard(movietitle) {
             let inputTitle = movietitle.toUpperCase();
             //filter로 변경
             let rowsTitle = rows.filter((value) => {
-                let a = value['original_title'].toUpperCase();
+                let a = value['title'].toUpperCase();
                 let count = a.search(inputTitle);
                 if(-1 < count){
                     return value;
@@ -79,7 +79,7 @@ function findCard(movietitle) {
             })
             rowsTitle.forEach((a) => {
                 let id = a['id'];
-                let title = a['original_title'];
+                let title = a['title'];
                 let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
                 let overView = a['overview'];
                 let rating = a['vote_average'];
@@ -109,7 +109,7 @@ function allCard(){
 
         rows.forEach((a) => {
             let id = a['id'];
-            let title = a['original_title'];
+            let title = a['title'];
             let image = `https://www.themoviedb.org/t/p/w500/${a['poster_path']}`;
             let overView = a['overview'];
             let rating = a['vote_average'];
