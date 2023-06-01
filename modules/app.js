@@ -2,11 +2,10 @@ const $serchBtn = document.querySelector("#myBtn");
 const $movieTitle = document.querySelector("#myText");
 import { findCard } from "./findMovieCard.js";
 import { clearCard } from "./clearMovieCard.js";
-import { allCard } from "./allMovieCard.js";
 
 //화면 출력
 let printMovie = function () {
-    allCard();
+    findCard("");
 }
 //검색 버튼 클릭
 $serchBtn.onclick = function () {
@@ -21,11 +20,6 @@ document.addEventListener("keyup", function (event) {
 //검색한 영화제목 체크
 function checkCard(movietitle) {
     clearCard();
-    if (!movietitle) {
-        printMovie = allCard();
-    } else {
-        printMovie = findCard(movietitle);
-    }
+    findCard(movietitle);
 }
-
 printMovie();
