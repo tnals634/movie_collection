@@ -2,12 +2,12 @@ import { fetchJson, url } from "./fetchJsonUrl.js";
 import { newCard, $mycards } from "./createCard.js";
 
 //검색한 영화제목 카드 찾기
-export async function findCard(movietitle) {
+export function findCard(movietitle) {
     for (let pageNumber = 1; pageNumber <= 500; pageNumber++) {
         if(!movietitle){
             pageNumber = 1;
         }
-        await fetchJson(url, pageNumber).then((data) => {
+        fetchJson(url, pageNumber).then((data) => {
             let rows = data.results;
             let inputTitle = movietitle.toUpperCase();
             let rowsTitle = rows.filter((value) => {
