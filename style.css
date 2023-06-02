@@ -58,7 +58,7 @@
     background-color: rgba(132, 151, 112, 0.975);
     color: white;
     border-radius: 20px;
-    box-shadow: 5px 5px 5px 5px rgba(125, 124, 124, 0.461);
+    box-shadow: 1px 1px 1px 1px rgba(125, 124, 124, 0.461);
 
     grid-auto-rows:minmax(500px, auto);
 }
