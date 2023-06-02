@@ -1,5 +1,6 @@
 const $serchBtn = document.querySelector("#myBtn");
 const $movieTitle = document.querySelector("#myText");
+const $webTitle = document.querySelector(".webTitle");
 import { findCard } from "./findMovieCard.js";
 import { clearCard } from "./clearMovieCard.js";
 
@@ -17,6 +18,11 @@ document.addEventListener("keyup", function (event) {
         checkCard($movieTitle.value);
     }
 });
+//웹페이지 제목 클릭시 돌아옴
+$webTitle.onclick = function () {
+    checkCard("");
+    $movieTitle.value = "";
+};
 //검색한 영화제목 체크
 function checkCard(movietitle) {
     clearCard();
