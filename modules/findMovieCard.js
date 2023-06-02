@@ -4,7 +4,7 @@ import { newCard, $mycards } from "./createCard.js";
 //검색한 영화제목 카드 찾기
 export function findCard(movietitle) {
     for (let pageNumber = 1; pageNumber <= 500; pageNumber++) {
-        if(!movietitle){
+        if(!movietitle || movietitle === " "){
             pageNumber = 1;
         }
         fetchJson(url, pageNumber).then((data) => {
@@ -27,6 +27,6 @@ export function findCard(movietitle) {
                 newCard(id, title, image, overView, rating, $mycards);
             })
         })
-        if(!movietitle) break;
+        if(!movietitle || movietitle === " ") break;
     }
 }
