@@ -26,6 +26,6 @@ $webTitle.onclick = function () {
 //검색한 영화제목 체크
 function checkCard(movietitle) {
     clearCard();
-    findCard(movietitle);
+    printMovie = findCard(movietitle);
 }
 printMovie();
